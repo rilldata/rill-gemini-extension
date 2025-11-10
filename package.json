@@ -1,0 +1,24 @@
+{
+  "name": "rill",
+  "version": "0.1.0",
+  "description": "Data analysis using Rill's metrics layer via Model Context Protocol",
+  "license": "Apache-2.0",
+  "type": "module",
+  "author": {
+    "name": "Rill Data",
+    "email": "support@rilldata.com",
+    "url": "https://rilldata.com"
+  },
+  "scripts": {
+    "link": "gemini extensions link .",
+    "unlink": "gemini extensions uninstall rill",
+    "format": "prettier --write \"**/*.{js,json,md}\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rilldata/mcp"
+  },
+  "devDependencies": {
+    "prettier": "^3.6.2"
+  }
+}

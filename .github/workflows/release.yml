@@ -1,0 +1,64 @@
+name: Release Extensions
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+env:
+  EXTENSION_VERSION: ${{ github.event.inputs.tag || github.ref_name }}
+
+jobs:
+  release:
+    name: Release Rill MCP Extension
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ env.EXTENSION_VERSION }}
+          name: "Rill MCP Extension ${{ env.EXTENSION_VERSION }}"
+          files: |
+            gemini-extension.json
+            contexts/GEMINI.md
+            package.json
+          body: |
+            ## Rill MCP Client Release
+
+            This release contains the MCP client for Rill Data analytics.
+
+            ### Installation
+            ```bash
+            gemini extensions install https://github.com/rilldata/mcp --ref=${{ env.EXTENSION_VERSION }}
+            ```
+
+            See the [README](https://github.com/rilldata/mcp/blob/main/README.md) for setup instructions.
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Notify Slack
+        uses: ravsamhq/notify-slack-action@v2
+        if: always()
+        with:
+          status: ${{ job.status }}
+          notification_title: "Rill MCP Extension Release - ${{ env.EXTENSION_VERSION }}"
+          message_format: "{emoji} *{workflow}* {status_message} in <{repo_url}|{repo}>"
+          footer: "Linked Repo <{repo_url}|{repo}>"
+          notify_when: "failure"
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_ANNOUNCE_DD }}

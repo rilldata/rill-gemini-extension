@@ -20,12 +20,12 @@ Gemini easily integrates with Rill's metrics layer, enabling users to leverage R
 
 ## Installation
 
-Simply install with the `gemini extensions install https://github.com/rilldata/mcp` command.
+Simply install with the `gemini extensions install https://github.com/rilldata/rill-gemini-extension` command.
 
 Install the extension via GitHub using a specific release tag:
 
 ```bash
-gemini extensions install https://github.com/rilldata/mcp --ref=v0.1.0
+gemini extensions install https://github.com/rilldata/rill-gemini-extension --ref=v0.1.0
 ```
 
 ## Configuration
@@ -45,8 +45,6 @@ rill token issue --display-name "Gemini Extension"
 > **Tip**: You can find your organization and project names in the Rill Cloud UI URL: `https://ui.rilldata.com/{organization}/{project}`
 
 The extension configuration is handled automatically through Gemini's settings interface - no manual environment file setup is required.
-
-  
 
 ## Development
 

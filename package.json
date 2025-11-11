@@ -12,11 +12,11 @@
   "scripts": {
     "link": "gemini extensions link .",
     "unlink": "gemini extensions uninstall rill",
-    "format": "prettier --write \"**/*.{js,json,md}\""
+    "format": "npx prettier --write \"**/*.{js,json,md}\""
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/rilldata/mcp"
+    "url": "https://github.com/rilldata/rill-gemini-extension"
   },
   "devDependencies": {
     "prettier": "^3.6.2"

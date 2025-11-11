@@ -20,21 +20,48 @@ Gemini easily integrates with Rill's metrics layer, enabling users to leverage R
 
 ## Installation
 
-Install with the `gemini extensions install https://github.com/rilldata/rill-gemini-extension` command.
+Install the extension with Gemini CLI:
 
-> Install the extension via GitHub using a specific release tag:
-
-```shell
-gemini extensions install https://github.com/rilldata/rill-gemini-extension --ref=v0.1.0
+```bash
+gemini extensions install https://github.com/rilldata/rill-gemini-extension # optional version tag --ref=v0.1.0
 ```
 
+## Configuration
+
+Set up your Rill credentials using environment variables:
+
+**Create a `.env` file** in your project root:
+
+```dotenv
+RILL_ORG=your-organization-name
+RILL_PROJECT=your-project-name
+RILL_ACCESS_TOKEN=your-access-token
+```
+
+**Get your credentials**:
+
+- **Organization & Project**: From your Rill Cloud URL: `https://ui.rilldata.com/{org}/{project}`
+- **Access Token**: Generate in Rill Cloud under Settings > API Tokens, or use CLI:
+  ```bash
+  rill token issue --display-name "Gemini Extension"
+  ```
+
+**Environment setup**:
+
+- **Folder scoped**: Gemini automatically picks up the `.env` file from your project root
+- **Global scope**: Copy your `.env` file to `~/.gemini/extensions/rill/.env`
+
+> **Security**: Keep your `.env` file secure and never commit it to version control.
+
 ## Usage
+
+> Examples used: [Production Examples](https://github.com/rilldata/rill?tab=readme-ov-file#production-examples)
 
 ```shell
 gemini "Using Rill tell me about any trends you see in the Ads Bids dataview"
 ```
 
-> Output: [Analysis](docs/sample.md)
+> Example output: [Analysis](docs/sample.md)
 
 ```shell
 gemini "Tell me about the top publishers by ad spend in the Ads Bids dataview"
@@ -60,23 +87,6 @@ Here's a breakdown of the top 10 publishers by ad spend:
   └──────────────────────────────────────┴───────────────────┴─────────────┘
 ```
 
-## Configuration
-
-After installation, configure the extension with your Rill credentials. The extension will prompt you for the following information during setup:
-
-- **Organization**: Your Rill organization name
-- **Project**: Your Rill project name
-- **Access Token**: Your Rill access token
-
-To generate a Rill authentication token, run:
-
-```bash
-rill token issue --display-name "Gemini Extension"
-```
-
-> **Tip**: You can find your organization and project names in the Rill Cloud UI URL: `https://ui.rilldata.com/{organization}/{project}`
-
-The extension configuration is handled automatically through Gemini's settings interface - no manual environment file setup is required.
 
 ## Development
 

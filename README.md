@@ -20,12 +20,44 @@ Gemini easily integrates with Rill's metrics layer, enabling users to leverage R
 
 ## Installation
 
-Simply install with the `gemini extensions install https://github.com/rilldata/rill-gemini-extension` command.
+Install with the `gemini extensions install https://github.com/rilldata/rill-gemini-extension` command.
 
-Install the extension via GitHub using a specific release tag:
+> Install the extension via GitHub using a specific release tag:
 
-```bash
+```shell
 gemini extensions install https://github.com/rilldata/rill-gemini-extension --ref=v0.1.0
+```
+
+## Usage
+
+```shell
+gemini "Using Rill tell me about any trends you see in the Ads Bids dataview"
+```
+
+> Output: [Analysis](docs/sample.md)
+
+```shell
+gemini "Tell me about the top publishers by ad spend in the Ads Bids dataview"
+```
+
+```shell
+Based on my initial analysis, I'll focus on the top named publishers: KrushMedia, Sinclair Broadcasting, and Taboola.
+
+Here's a breakdown of the top 10 publishers by ad spend:
+
+  ┌──────────────────────────────────────┬───────────────────┬─────────────┐
+  │ Publisher                            │ Advertising Spend │ Impressions │
+  ├──────────────────────────────────────┼───────────────────┼─────────────┤
+  │ KrushMedia                           │ $755,058.21       │ 50,219      │
+  │ Sinclair Broadcasting - Bally Sports │ $419,923.62       │ 30,002      │
+  │ Taboola                              │ $408,628.51       │ 81,782      │
+  │ PubWise                              │ $202,980.07       │ 26,089      │
+  │ Disney                               │ $48,075.66        │ 4,055       │
+  │ Connatix                             │ $40,485.67        │ 7,090       │
+  │ Spot.IM                              │ $38,171.29        │ 6,576       │
+  │ Pluto TV                             │ $36,175.64        │ 4,396       │
+  │ fubo.TV New                          │ $23,563.37        │ 1,641       │
+  └──────────────────────────────────────┴───────────────────┴─────────────┘
 ```
 
 ## Configuration

@@ -76,20 +76,6 @@ Website traffic: ▁▁▂▃▅▄▆▇▆▅▄▂▁
 Trend: Sales ↗️ (+15%) Costs ↘️ (-8%)
 ```
 
-**ASCII Line Charts**:
-
-```
-Value
-    ^
-    |                    /-------  Peak
-    |                  /
- 3  |               /
- 2  |            /
- 1  |         /
- 0  |______/
-    +---+---+---+---+---+---+---> Time
-```
-
 **Formatted Tables**:
 
 ```

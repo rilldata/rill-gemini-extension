@@ -8,7 +8,7 @@ Rill delivers the fastest path from data lake to dashboard. **For data engineers
 
 - [Rill CLI](https://docs.rilldata.com/install) installed
 - Active Rill project or cloud account
-- Gemini with extension support
+- Gemini CLI installed
 
 ```bash
 curl https://rill.sh | sh
@@ -87,6 +87,15 @@ Here's a breakdown of the top 10 publishers by ad spend:
   └──────────────────────────────────────┴───────────────────┴─────────────┘
 ```
 
+## Troubleshooting
+
+### Connection Issues
+
+If you can't connect to your Rill project:
+
+- Verify your `.env` file or inputs contain valid credentials
+- Confirm your access token has the necessary permissions
+- Check that your organization and project names match your Rill Cloud URL
 
 ## Development
 

@@ -42,10 +42,10 @@ jobs:
 
             ### Installation
             ```bash
-            gemini extensions install https://github.com/rilldata/mcp --ref=${{ env.EXTENSION_VERSION }}
+            gemini extensions install https://github.com/rilldata/rill-gemini-extension --ref=${{ env.EXTENSION_VERSION }}
             ```
 
-            See the [README](https://github.com/rilldata/mcp/blob/main/README.md) for setup instructions.
+            See the [README](https://github.com/rilldata/rill-gemini-extension/blob/main/README.md) for setup instructions.
           draft: false
           prerelease: false
         env:

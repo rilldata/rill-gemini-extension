@@ -1,26 +1,22 @@
-# MCP Client for Rill Data
+# Rill Gemini Extension
 
-Data analysis using Rill's metrics layer via Model Context Protocol.
+Data analysis using Rill's metrics layer via Model Context Protocol for **Google Gemini**.
 
-Rill delivers the fastest path from data lake to dashboard. **For data engineers and analysts**, it provides rapid, self-service dashboards built directly on raw data lakes, eliminating traditional BI complexity. **For data consumers**, it ensures reliable, fast-loading dashboards with accurate, real-time metrics.
+This extension enables Google's Gemini AI assistant to query and analyze your Rill data directly through natural language conversations. Using Gemini's CLI and the Model Context Protocol (MCP), you can explore metrics, identify trends, and generate insights without writing queries manually.
 
 ## Prerequisites
 
-- [Rill CLI](https://docs.rilldata.com/install) installed
 - Active Rill project or cloud account
-- Gemini CLI installed
+- [Google Gemini CLI](https://github.com/google-gemini/gemini-cli) installed
+- [Rill CLI](https://docs.rilldata.com/install) installed
 
 ```bash
 curl https://rill.sh | sh
 ```
 
-## Gemini Extension
-
-Gemini easily integrates with Rill's metrics layer, enabling users to leverage Rill's powerful data modeling and visualization capabilities within their Gemini workflows.
-
 ## Installation
 
-Install the extension with Gemini CLI:
+Install the extension with the Google Gemini CLI:
 
 ```bash
 gemini extensions install https://github.com/rilldata/rill-gemini-extension # optional version tag --ref=v0.1.0
@@ -48,7 +44,7 @@ RILL_ACCESS_TOKEN=your-access-token
 
 **Environment setup**:
 
-- **Folder scoped**: Gemini automatically picks up the `.env` file from your project root
+- **Folder scoped**: The Gemini CLI automatically picks up the `.env` file from your project root
 - **Global scope**: Copy your `.env` file to `~/.gemini/extensions/rill/.env`
 
 > **Security**: Keep your `.env` file secure and never commit it to version control.
@@ -89,7 +85,7 @@ Here's a breakdown of the top 10 publishers by ad spend:
 
 ### Custom Slash Commands
 
-This extension includes custom commands for common Rill analysis workflows. Use these commands to streamline your data exploration:
+This extension includes custom slash commands for common Rill analysis workflows. Use these commands in your Gemini conversations to streamline your data exploration:
 
 #### Available Commands
 
@@ -154,7 +150,7 @@ To test changes locally:
 npm run link
 ```
 
-3. Test the extension in Gemini, then unlink when done:
+3. Test the extension with the Gemini CLI, then unlink when done:
 
 ```bash
 npm run unlink

@@ -87,6 +87,49 @@ Here's a breakdown of the top 10 publishers by ad spend:
   └──────────────────────────────────────┴───────────────────┴─────────────┘
 ```
 
+### Custom Slash Commands
+
+This extension includes custom commands for common Rill analysis workflows. Use these commands to streamline your data exploration:
+
+#### Available Commands
+
+- **`/rill:metrics`** - List all available metrics views in your Rill project with descriptions
+- **`/rill:explore`** - Start a comprehensive OODA loop analysis for a specific metrics view
+- **`/rill:trends`** - Analyze time-based trends with automatic granularity selection
+- **`/rill:compare`** - Compare metrics across dimensions or time periods
+- **`/rill:timerange`** - Check the available time range and data freshness for a metrics view
+
+#### Usage Examples
+
+**List available metrics views:**
+```shell
+gemini> /rill:metrics
+```
+
+**Start guided exploration:**
+```shell
+gemini> /rill:explore
+# Gemini will ask which metrics view to analyze if not specified
+```
+
+**Analyze trends over time:**
+```shell
+gemini> /rill:trends
+# Performs time-series analysis with visualizations
+```
+
+**Compare performance across dimensions:**
+```shell
+gemini> /rill:compare
+# Supports dimension comparison, time period comparison, and segment comparison
+```
+
+**Check data availability:**
+```shell
+gemini> /rill:timerange
+# Shows earliest and latest data points available
+```
+
 ## Troubleshooting
 
 ### Connection Issues

@@ -1,0 +1,10 @@
+description = "List all available Rill metrics views"
+prompt = """
+Use the list_metrics_views tool to show all available metrics views in the current Rill project.
+For each metrics view, provide:
+- The view name
+- A brief description of what it contains
+- Key measures and dimensions available
+
+Format the output in a clear, scannable way.
+"""

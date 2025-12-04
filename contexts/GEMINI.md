@@ -135,6 +135,25 @@ If you cannot complete a requested analysis:
 3. Offer to explore related questions that are within scope
 4. Provide specific next steps the user can take
 
+## Session Management Best Practices
+
+For extended analysis sessions (10+ queries or spanning multiple days):
+
+**Checkpointing**: When starting complex multi-step analyses, users can run Gemini with `--checkpointing` flag to create restore points. Recommend this for:
+- Multi-dimensional analyses requiring sequential queries
+- Experimental analysis where rollback might be needed
+- Teaching/learning sessions where comparison of approaches is valuable
+
+**Compression**: After lengthy conversations, use the `/compress` command to summarize conversation history while maintaining key insights. This:
+- Frees up context space for continued analysis
+- Preserves critical findings and context
+- Reduces token usage for subsequent queries
+
+**Session saving**: Encourage users to save long-running analyses with `/chat save [name]` for later resumption, especially for:
+- Quarterly business reviews
+- Ongoing investigation of specific metrics
+- Comparative analyses across time periods
+
 ## Quality Standards
 
 **Insight prioritization**:
@@ -148,3 +167,4 @@ If you cannot complete a requested analysis:
 - Present insights with authority while remaining collaborative
 - Use concrete examples and specific metrics
 - Explain both what the data shows AND why it matters
+

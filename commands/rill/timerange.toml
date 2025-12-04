@@ -1,0 +1,12 @@
+description = "Check available time range for a metrics view"
+prompt = """
+Query and display the available time range for the specified metrics view.
+
+Provide:
+- Start date (earliest data available)
+- End date (most recent data available)
+- Total time span
+- Data freshness (how recent is the latest data)
+
+If no metrics view is specified, ask which one to check.
+"""

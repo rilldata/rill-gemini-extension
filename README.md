@@ -6,46 +6,53 @@ This extension enables Google's Gemini AI assistant to query and analyze your Ri
 
 ## Prerequisites
 
-- Active Rill project or cloud account
-- [Google Gemini CLI](https://github.com/google-gemini/gemini-cli) installed
-- [Rill CLI](https://docs.rilldata.com/install) installed
+- A Rill project or cloud account - Get Started [here](https://docs.rilldata.com/)
+- [Rill CLI](https://docs.rilldata.com/install)
+- [Google Gemini CLI](https://github.com/google-gemini/gemini-cli)
+
+Before you install the extension, create an access token for the user that will run Gemini. Tokens are user-level credentials — keep them secure and never commit them to source control.
+
+Create a token in Rill Cloud (Settings → API Tokens) or run:
 
 ```bash
-curl https://rill.sh | sh
+rill token issue --display-name "Gemini Extension"
 ```
+> Save the token somewhere safe (see configuration below).
 
 ## Installation
 
 Install the extension with the Google Gemini CLI:
 
 ```bash
-gemini extensions install https://github.com/rilldata/rill-gemini-extension # optional version tag --ref=v0.1.0
+gemini extensions install https://github.com/rilldata/rill-gemini-extension
+# optional version tag --ref=v0.1.0
 ```
+
+### What the installer prompts mean
+
+When running the installer you may be asked for Organization, Project, and Access token — these are prompts to help populate the extension's configuration. The values will be saved to a `.env` file in the extension’s directory (e.g., `~/.gemini/extensions/rill/.env`).
+
+- `Keychain not available` — this is informational, not fatal. It indicates the installer couldn't store credentials in the OS keychain and will fall back to file-based storage.
 
 ## Configuration
 
-Set up your Rill credentials using environment variables:
+This extension reads configuration from environment variables. You can set these in either of two mutually exclusive ways:
 
-**Create a `.env` file** in your project root:
+- Folder-scoped `.env` file (project-specific). Place this in your project root.
+- Global-scoped `.env` for the Gemini extension (user-wide). Place at: `~/.gemini/extensions/rill/.env`
 
+Recommended `.env` example (project root or global):
 ```dotenv
-RILL_ORG=your-organization-name
-RILL_PROJECT=your-project-name
-RILL_ACCESS_TOKEN=your-access-token
+# Best practice: keep tokens out of source control (add .env to .gitignore)
+RILL_ORG=your-organization-name        # optional if project file already has org
+RILL_PROJECT=your-project-name         # optional if your project uses rill.yaml
+RILL_ACCESS_TOKEN=your-access-token    # user-level token — do not commit
 ```
 
-**Get your credentials**:
-
-- **Organization & Project**: From your Rill Cloud URL: `https://ui.rilldata.com/{org}/{project}`
-- **Access Token**: Generate in Rill Cloud under Settings > API Tokens, or use CLI:
-  ```bash
-  rill token issue --display-name "Gemini Extension"
-  ```
-
-**Environment setup**:
-
-- **Folder scoped**: The Gemini CLI automatically picks up the `.env` file from your project root
-- **Global scope**: Copy your `.env` file to `~/.gemini/extensions/rill/.env`
+How the extension decides:
+- The extension reads environment variables first: `RILL_ORG`, `RILL_PROJECT`, `RILL_ACCESS_TOKEN`.
+- If `RILL_PROJECT` is defined in `rill.yaml`, you don't need to repeat it in `.env` unless you intend to override it.
+- Tokens are user-level: prefer storing them globally or in the OS keychain, not in project repositories.
 
 > **Security**: Keep your `.env` file secure and never commit it to version control.
 

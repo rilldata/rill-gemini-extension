@@ -1,4 +1,4 @@
-# MCP Client for Rill Data
+# Rill Gemini Extension
 
 Data analysis using Rill's metrics layer via Model Context Protocol.
 
@@ -6,17 +6,13 @@ Rill delivers the fastest path from data lake to dashboard. **For data engineers
 
 ## Prerequisites
 
-- [Rill CLI](https://docs.rilldata.com/install) installed
 - Active Rill project or cloud account
 - Gemini CLI installed
+- [Rill CLI](https://docs.rilldata.com/install) installed
 
 ```bash
 curl https://rill.sh | sh
 ```
-
-## Gemini Extension
-
-Gemini easily integrates with Rill's metrics layer, enabling users to leverage Rill's powerful data modeling and visualization capabilities within their Gemini workflows.
 
 ## Installation
 

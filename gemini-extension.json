@@ -10,11 +10,6 @@
       "headers": {
         "Authorization": "Bearer ${RILL_ACCESS_TOKEN}",
         "Content-Type": "application/json"
-      },
-      "env": {
-        "RILL_ORG": "${RILL_ORG}",
-        "RILL_PROJECT": "${RILL_PROJECT}",
-        "RILL_ACCESS_TOKEN": "${RILL_ACCESS_TOKEN}"
       }
     }
   },

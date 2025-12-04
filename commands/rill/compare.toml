@@ -1,0 +1,18 @@
+description = "Compare metrics across dimensions or time periods"
+prompt = """
+Perform a comparative analysis for the specified metrics view.
+
+Analysis options:
+- **Dimension comparison**: Compare metrics across different categories (e.g., by region, product, channel)
+- **Time period comparison**: Compare current period vs previous period (week-over-week, month-over-month, year-over-year)
+- **Segment comparison**: Compare top performers vs bottom performers
+
+Steps:
+1. Clarify what comparison is needed (if not specified)
+2. Query the relevant data with comparison parameters
+3. Calculate deltas (absolute and relative changes)
+4. Identify the largest changes and their business significance
+5. Present findings in a clear table format
+
+Ask me what comparison to perform if not already specified.
+"""

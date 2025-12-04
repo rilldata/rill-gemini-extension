@@ -1,0 +1,34 @@
+{
+  "name": "rill",
+  "description": "Data analysis using Rill's metrics layer via Model Context Protocol",
+  "version": "0.1.0",
+  "displayName": "Rill",
+  "contextFileName": "contexts/GEMINI.md",
+  "mcpServers": {
+    "rill": {
+      "httpUrl": "https://api.rilldata.com/v1/orgs/${RILL_ORG}/projects/${RILL_PROJECT}/runtime/mcp",
+      "headers": {
+        "Authorization": "Bearer ${RILL_ACCESS_TOKEN}",
+        "Content-Type": "application/json"
+      }
+    }
+  },
+  "settings": [
+    {
+      "name": "Organization",
+      "description": "Your Rill organization name",
+      "envVar": "RILL_ORG"
+    },
+    {
+      "name": "Project",
+      "description": "Your Rill project name",
+      "envVar": "RILL_PROJECT"
+    },
+    {
+      "name": "Access Token",
+      "description": "Your Rill access token",
+      "envVar": "RILL_ACCESS_TOKEN",
+      "sensitive": true
+    }
+  ]
+}

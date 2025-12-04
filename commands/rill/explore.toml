@@ -1,0 +1,13 @@
+description = "Start OODA loop analysis for a specific metrics view"
+prompt = """
+Begin a comprehensive OODA (Observe, Orient, Decide, Act) loop analysis for the specified metrics view.
+
+Follow this process:
+
+1. **Observe**: Get the metrics view specification and time range
+2. **Orient**: Identify key patterns, anomalies, and trends
+3. **Decide**: Determine which insights are most actionable
+4. **Act**: Provide specific recommendations with supporting data
+
+Ask me which metrics view to analyze if not specified in the conversation.
+"""

@@ -1,0 +1,13 @@
+description = "Analyze time-based trends for a metrics view"
+prompt = """
+Perform a time-based trend analysis for the specified metrics view.
+
+Steps:
+1. Get the available time range for the metrics view
+2. Query data over time (daily, weekly, or monthly granularity based on time range)
+3. Identify trends, patterns, and anomalies
+4. Calculate growth rates and key inflection points
+5. Provide text-based visualizations (ASCII charts, sparklines, or tables)
+
+Ask me which metrics view and time period to analyze if not already specified.
+"""

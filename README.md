@@ -44,13 +44,19 @@ Priority (order of precedence):
 3. Project level `.env` (folder-scoped)
 
 ```bash
-# Example .env
+# Recommended .env (global config only)
+# Use a global/machine-scoped .env (eg. ~/.gemini/extensions/rill/.env) or export the values from your shell profile
+RILL_USER_TOKEN=your-user-token
+# Optional: you can also set organization/project globally, but prefer keeping tokens and per-user secrets out of project folders.
 RILL_ORG=your-organization-name
 RILL_PROJECT=your-project-name
-RILL_USER_TOKEN=your-user-token
 ```
 
-> **Security**: Keep your `.env` file secure and never commit it to version control.
+> **Security**: Keep your global `.env` file secure and never commit it to version control.
+
+> Note: This extension currently reads configuration from environment variables
+> and the Gemini extension settings. It does not automatically parse `rill.yaml`
+> to infer project/organization settings.
 
 ## Usage
 

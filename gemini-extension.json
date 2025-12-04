@@ -8,7 +8,7 @@
     "rill": {
       "httpUrl": "https://api.rilldata.com/v1/orgs/${RILL_ORG}/projects/${RILL_PROJECT}/runtime/mcp",
       "headers": {
-        "Authorization": "Bearer ${RILL_ACCESS_TOKEN}",
+        "Authorization": "Bearer ${RILL_USER_TOKEN}",
         "Content-Type": "application/json"
       }
     }
@@ -25,9 +25,9 @@
       "envVar": "RILL_PROJECT"
     },
     {
-      "name": "Access Token",
-      "description": "Your Rill access token",
-      "envVar": "RILL_ACCESS_TOKEN",
+      "name": "User Token",
+      "description": "Your Rill user or service token",
+      "envVar": "RILL_USER_TOKEN",
       "sensitive": true
     }
   ]

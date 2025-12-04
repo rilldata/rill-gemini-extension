@@ -1,18 +1,18 @@
 # Rill Gemini Extension
 
-Data analysis using Rill's metrics layer via Model Context Protocol for **Google Gemini**.
+Data analysis using Rill's metrics layer via Model Context Protocol for **Google Gemini CLI**.
 
-This extension enables Google's Gemini AI assistant to query and analyze your Rill data directly through natural language conversations. Using Gemini's CLI and the Model Context Protocol (MCP), you can explore metrics, identify trends, and generate insights without writing queries manually.
+This extension enables Google's Gemini AI assistant to query and analyze your Rill data directly through natural language conversations. Using the Google Gemini CLI and the Model Context Protocol (MCP), you can explore metrics, identify trends, and generate insights without writing queries manually.
 
 ## Prerequisites
 
-- A Rill project or cloud account - Get Started [here](https://docs.rilldata.com/)
+- A Rill project or cloud account — get started [here](https://docs.rilldata.com/)
 - [Rill CLI](https://docs.rilldata.com/install)
 - [Google Gemini CLI](https://github.com/google-gemini/gemini-cli)
 
-Before you install the extension, create an access token for the user that will run Gemini. Tokens are user-level credentials — keep them secure and never commit them to source control.
+Before you install the extension, create a user token for the account that will run the Google Gemini CLI. Rill distinguishes "user" and "service" tokens — use a user token for interactive developer tooling and a service token for automation/CI. Tokens are sensitive — keep them secure and never commit them to source control.
 
-Create a token in Rill Cloud (Settings → API Tokens) or run:
+Create a token in Rill Cloud (Settings → API Tokens) (see https://docs.rilldata.com/manage/user-tokens) or run:
 
 ```bash
 rill token issue --display-name "Gemini Extension"
@@ -30,29 +30,25 @@ gemini extensions install https://github.com/rilldata/rill-gemini-extension
 
 ### What the installer prompts mean
 
-When running the installer you may be asked for Organization, Project, and Access token — these are prompts to help populate the extension's configuration. The values will be saved to a `.env` file in the extension’s directory (e.g., `~/.gemini/extensions/rill/.env`).
+When running the installer you may be asked for Organization, Project, and a user/service token — these are prompts to help populate the extension's configuration. The values will be saved to a `.env` file in the extension’s directory (e.g., `~/.gemini/extensions/rill/.env`).
 
 - `Keychain not available` — this is informational, not fatal. It indicates the installer couldn't store credentials in the OS keychain and will fall back to file-based storage.
 
 ## Configuration
 
-This extension reads configuration from environment variables. You can set these in either of two mutually exclusive ways:
+This extension reads configuration from environment variables. Prefer setting environment variables globally (e.g., export in your shell profile) so your Rill tooling is configured once per machine. A local `.env` file is supported as a fallback.
 
-- Folder-scoped `.env` file (project-specific). Place this in your project root.
-- Global-scoped `.env` for the Gemini extension (user-wide). Place at: `~/.gemini/extensions/rill/.env`
+Priority (order of precedence):
+1. Exported OS environment variables (recommended) — e.g. `export RILL_USER_TOKEN=...`
+2. Global Gemini extension `.env` (machine-wide): `~/.gemini/extensions/rill/.env` — useful when you want the Google Gemini CLI to pick up settings automatically
+3. Project level `.env` (folder-scoped)
 
-Recommended `.env` example (project root or global):
-```dotenv
-# Best practice: keep tokens out of source control (add .env to .gitignore)
-RILL_ORG=your-organization-name        # optional if project file already has org
-RILL_PROJECT=your-project-name         # optional if your project uses rill.yaml
-RILL_ACCESS_TOKEN=your-access-token    # user-level token — do not commit
+```bash
+# Example .env
+RILL_ORG=your-organization-name
+RILL_PROJECT=your-project-name
+RILL_USER_TOKEN=your-user-token
 ```
-
-How the extension decides:
-- The extension reads environment variables first: `RILL_ORG`, `RILL_PROJECT`, `RILL_ACCESS_TOKEN`.
-- If `RILL_PROJECT` is defined in `rill.yaml`, you don't need to repeat it in `.env` unless you intend to override it.
-- Tokens are user-level: prefer storing them globally or in the OS keychain, not in project repositories.
 
 > **Security**: Keep your `.env` file secure and never commit it to version control.
 
@@ -61,7 +57,7 @@ How the extension decides:
 > Examples used: [Production Examples](https://github.com/rilldata/rill?tab=readme-ov-file#production-examples)
 
 ```shell
-gemini "Using Rill tell me about any trends you see in the Ads Bids dataview"
+gemini "Using Rill, tell me about any trends you see in the Ads Bids dataview"
 ```
 
 > Example output: [Analysis](docs/sample.md)
@@ -92,7 +88,7 @@ Here's a breakdown of the top 10 publishers by ad spend:
 
 ### Custom Slash Commands
 
-This extension includes custom slash commands for common Rill analysis workflows. Use these commands in your Gemini conversations to streamline your data exploration:
+This extension includes custom slash commands for common Rill analysis workflows. Use these commands in your Google Gemini CLI conversations to streamline your data exploration:
 
 #### Available Commands
 
@@ -106,31 +102,38 @@ This extension includes custom slash commands for common Rill analysis workflows
 
 **List available metrics views:**
 ```shell
-gemini> /rill:metrics
+gemini /rill:metrics
 ```
 
 **Start guided exploration:**
 ```shell
-gemini> /rill:explore
-# Gemini will ask which metrics view to analyze if not specified
+gemini /rill:explore
+# The Google Gemini CLI will ask which metrics view to analyze if not specified
 ```
 
 **Analyze trends over time:**
 ```shell
-gemini> /rill:trends
+gemini /rill:trends
 # Performs time-series analysis with visualizations
 ```
 
 **Compare performance across dimensions:**
 ```shell
-gemini> /rill:compare
+gemini /rill:compare
 # Supports dimension comparison, time period comparison, and segment comparison
 ```
 
 **Check data availability:**
 ```shell
-gemini> /rill:timerange
+gemini /rill:timerange
 # Shows earliest and latest data points available
+```
+
+
+## Uninstallation
+
+```bash
+gemini extensions uninstall rill
 ```
 
 ## Troubleshooting
@@ -140,7 +143,7 @@ gemini> /rill:timerange
 If you can't connect to your Rill project:
 
 - Verify your `.env` file or inputs contain valid credentials
-- Confirm your access token has the necessary permissions
+  - Confirm your user/service token has the necessary permissions
 - Check that your organization and project names match your Rill Cloud URL
 
 ## Development
@@ -157,7 +160,7 @@ To test changes locally:
 npm run link
 ```
 
-3. Test the extension with the Gemini CLI, then unlink when done:
+3. Test the extension with the Google Gemini CLI, then unlink when done:
 
 ```bash
 npm run unlink

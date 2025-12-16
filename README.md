@@ -10,15 +10,6 @@ This extension enables Google's Gemini AI assistant to query and analyze your Ri
 - [Rill CLI](https://docs.rilldata.com/install)
 - [Google Gemini CLI](https://github.com/google-gemini/gemini-cli)
 
-Before you install the extension, you will need to create a user token for authentication to your Rill project.
-
-Create a token in Rill Cloud (Settings → API Tokens) (see https://docs.rilldata.com/manage/user-tokens) or run:
-
-```bash
-rill token issue --display-name "Gemini Extension"
-```
-> Save the token somewhere safe (see configuration below).
-
 ## Installation
 
 Install the extension with the Google Gemini CLI:
@@ -27,11 +18,16 @@ Install the extension with the Google Gemini CLI:
 gemini extensions install https://github.com/rilldata/rill-gemini-extension
 ```
 
-You will be prompted to provide your Rill organization, project, and user/service token during installation. To confirm the installation, run:
+You will be prompted to provide your Rill organization and project.
 
 ```bash
 # You should see 'rill' listed among installed extensions
 gemini extensions list
+```
+
+Rill Supports MCP Oauth authentication.
+```bash
+/mcp auth rill
 ```
 
 ## Usage

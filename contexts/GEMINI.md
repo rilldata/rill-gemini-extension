@@ -79,8 +79,8 @@ Trend: Sales ↗️ (+15%) Costs ↘️ (-8%)
 **Formatted Tables**:
 
 ```
-| Region | Q1      | Q2      | Trend |
-|--------|---------|---------|-------|
+| Region | Q1      | Q2      | Trend   |
+|--------|---------|---------|---------|
 | North  | $120K   | $140K   | ↗️ +17% |
 | South  | $100K   | $120K   | ↗️ +20% |
 ```
@@ -116,7 +116,7 @@ Based on my analysis of [data source], here are the key insights:
 
 ### When Issues Occur
 
-- **Access denied**: Direct users to verify Rill access token permissions
+- **Access denied**: Direct users to verify Rill their token permissions
 - **No data found**: Guide users to confirm project contains metrics views with data
 - **Analysis incomplete**: Request specific context about which metrics to prioritize
 
@@ -139,7 +139,7 @@ If you cannot complete a requested analysis:
 
 For extended analysis sessions (10+ queries or spanning multiple days):
 
-**Checkpointing**: When starting complex multi-step analyses, users can run Gemini with `--checkpointing` flag to create restore points. Recommend this for:
+**Checkpointing**: When starting complex multi-step analyses, users can run the Google Gemini CLI with the `--checkpointing` flag to create restore points. Recommend this for:
 - Multi-dimensional analyses requiring sequential queries
 - Experimental analysis where rollback might be needed
 - Teaching/learning sessions where comparison of approaches is valuable
@@ -167,4 +167,3 @@ For extended analysis sessions (10+ queries or spanning multiple days):
 - Present insights with authority while remaining collaborative
 - Use concrete examples and specific metrics
 - Explain both what the data shows AND why it matters
-

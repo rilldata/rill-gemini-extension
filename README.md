@@ -1,60 +1,41 @@
 # Rill Gemini Extension
 
-Data analysis using Rill's metrics layer via Model Context Protocol for **Google Gemini**.
+Data analysis using Rill's metrics layer via Model Context Protocol for **Google Gemini CLI**.
 
-This extension enables Google's Gemini AI assistant to query and analyze your Rill data directly through natural language conversations. Using Gemini's CLI and the Model Context Protocol (MCP), you can explore metrics, identify trends, and generate insights without writing queries manually.
+This extension enables Google's Gemini AI assistant to query and analyze your Rill data directly through natural language conversations. Using the Google Gemini CLI and the Model Context Protocol (MCP), you can explore metrics, identify trends, and generate insights without writing queries manually.
 
 ## Prerequisites
 
-- Active Rill project or cloud account
-- [Google Gemini CLI](https://github.com/google-gemini/gemini-cli) installed
-- [Rill CLI](https://docs.rilldata.com/install) installed
-
-```bash
-curl https://rill.sh | sh
-```
+- A Rill project or cloud account — get started [here](https://docs.rilldata.com/)
+- [Rill CLI](https://docs.rilldata.com/install)
+- [Google Gemini CLI](https://github.com/google-gemini/gemini-cli)
 
 ## Installation
 
 Install the extension with the Google Gemini CLI:
 
 ```bash
-gemini extensions install https://github.com/rilldata/rill-gemini-extension # optional version tag --ref=v0.1.0
+gemini extensions install https://github.com/rilldata/rill-gemini-extension
 ```
 
-## Configuration
+You will be prompted to provide your Rill organization and project.
 
-Set up your Rill credentials using environment variables:
-
-**Create a `.env` file** in your project root:
-
-```dotenv
-RILL_ORG=your-organization-name
-RILL_PROJECT=your-project-name
-RILL_ACCESS_TOKEN=your-access-token
+```bash
+# You should see 'rill' listed among installed extensions
+gemini extensions list
 ```
 
-**Get your credentials**:
-
-- **Organization & Project**: From your Rill Cloud URL: `https://ui.rilldata.com/{org}/{project}`
-- **Access Token**: Generate in Rill Cloud under Settings > API Tokens, or use CLI:
-  ```bash
-  rill token issue --display-name "Gemini Extension"
-  ```
-
-**Environment setup**:
-
-- **Folder scoped**: The Gemini CLI automatically picks up the `.env` file from your project root
-- **Global scope**: Copy your `.env` file to `~/.gemini/extensions/rill/.env`
-
-> **Security**: Keep your `.env` file secure and never commit it to version control.
+Rill Supports MCP Oauth authentication.
+```bash
+/mcp auth rill
+```
 
 ## Usage
 
-> Examples used: [Production Examples](https://github.com/rilldata/rill?tab=readme-ov-file#production-examples)
+Once installed and configured, you can start using the Rill extension in your Google Gemini CLI conversations. Simply ask questions about your Rill metrics views, and the extension will generate insights based on your data.
 
 ```shell
-gemini "Using Rill tell me about any trends you see in the Ads Bids dataview"
+gemini "Using Rill, tell me about any trends you see in the Ads Bids dataview"
 ```
 
 > Example output: [Analysis](docs/sample.md)
@@ -83,9 +64,11 @@ Here's a breakdown of the top 10 publishers by ad spend:
   └──────────────────────────────────────┴───────────────────┴─────────────┘
 ```
 
+> Examples used: [Examples](https://github.com/rilldata/rill?tab=readme-ov-file#production-examples)
+
 ### Custom Slash Commands
 
-This extension includes custom slash commands for common Rill analysis workflows. Use these commands in your Gemini conversations to streamline your data exploration:
+This extension includes custom slash commands for common Rill analysis workflows. Use these commands in your Google Gemini CLI conversations to streamline your data exploration:
 
 #### Available Commands
 
@@ -95,45 +78,26 @@ This extension includes custom slash commands for common Rill analysis workflows
 - **`/rill:compare`** - Compare metrics across dimensions or time periods
 - **`/rill:timerange`** - Check the available time range and data freshness for a metrics view
 
-#### Usage Examples
+## Uninstallation
 
-**List available metrics views:**
-```shell
-gemini> /rill:metrics
-```
-
-**Start guided exploration:**
-```shell
-gemini> /rill:explore
-# Gemini will ask which metrics view to analyze if not specified
-```
-
-**Analyze trends over time:**
-```shell
-gemini> /rill:trends
-# Performs time-series analysis with visualizations
-```
-
-**Compare performance across dimensions:**
-```shell
-gemini> /rill:compare
-# Supports dimension comparison, time period comparison, and segment comparison
-```
-
-**Check data availability:**
-```shell
-gemini> /rill:timerange
-# Shows earliest and latest data points available
+```bash
+gemini extensions uninstall rill
 ```
 
 ## Troubleshooting
+
+### What the installer prompts mean
+
+When running the installer you may be asked for Organization, Project, and a user/service token — these are prompts to help populate the extension's configuration. The values will be saved to a `.env` file in the extension’s directory (e.g., `~/.gemini/extensions/rill/.env`).
+
+- `Keychain not available` — this is informational, not fatal. It indicates the installer couldn't store credentials in the OS keychain and will fall back to file-based storage.
 
 ### Connection Issues
 
 If you can't connect to your Rill project:
 
 - Verify your `.env` file or inputs contain valid credentials
-- Confirm your access token has the necessary permissions
+  - Confirm your user/service token has the necessary permissions
 - Check that your organization and project names match your Rill Cloud URL
 
 ## Development
@@ -150,7 +114,7 @@ To test changes locally:
 npm run link
 ```
 
-3. Test the extension with the Gemini CLI, then unlink when done:
+3. Test the extension with the Google Gemini CLI, then unlink when done:
 
 ```bash
 npm run unlink
